@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document</title>
   <link rel="stylesheet" href="style.css" />
+  
 </head>
 <body>
   <div id="header-placeholder"></div>
   <div id="hero-placeholder"></div>
   <div id="search-placeholder"></div>
   <div id="properies-placeholder"></div>
+  <div id="chart-placeholder"></div>
 
   <script>
     // Load header.html
@@ -40,6 +42,14 @@
       .then(data => {
         document.getElementById('properies-placeholder').innerHTML = data;
       });
+
+          // Load chart.html
+    fetch('chart.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('chart-placeholder').innerHTML = data;
+      });
+
   </script>
   <script src="script.js"></script>
 </body>

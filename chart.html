@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bar Chart with Custom Height</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+   
+    .chart-container {
+      width: 240px;
+      height: 150px; /* Set the desired height */
+      background: #fff;
+      padding: 4px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    canvas {
+      height: 110% !important; /* Force canvas height */
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['', '', '', '', ''],
+        datasets: [{
+        
+          data: [45, 72, 55, 38, 60],
+          backgroundColor: [
+            '#4caf50', '#2196f3', '#ffc107', '#ff5722', '#9c27b0'
+          ],
+          borderRadius: 5
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false, 
+           plugins: {
+      legend: {
+        display: false // Hides the label
+      }
+    },// Allows height control
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
