@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="header-placeholder"></div>
+  <div id="hero-placeholder"></div>
+  <div id="search-placeholder"></div>
+  <div id="properies-placeholder"></div>
+
+  <script>
+    // Load header.html
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+
+    // Load hero.html
+    fetch('hero.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('hero-placeholder').innerHTML = data;
+      });
+
+    // Load search.html
+    fetch('search.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('search-placeholder').innerHTML = data;
+      });
+
+    // Load properies.html
+    fetch('properies.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('properies-placeholder').innerHTML = data;
+      });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

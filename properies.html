@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Property Carousel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section class="property-carousel">
+    <h2 class="carousel-heading">Apartments, Villas and more</h2>
+    <p class="carousel-subheading">in South Delhi</p>
+
+    <div class="carousel-container">
+      <button class="nav-button left" id="prevBtn">&#9664;</button>
+      <div class="carousel-wrapper" id="carouselWrapper">
+        <!-- Cards -->
+        <div class="carousel-card bg-light-blue">
+        <div class="card-text">
+            <h3>Residential Apartment</h3>
+            <p>2,500+ Properties</p>
+        </div>
+        <img src="images/d_hp_property_type_1.webp" alt="Residential Apartment">
+        </div>
+        <div class="carousel-card  bg-light-green">
+          <div class="card-text">
+            <h3>Independent House/ Villa</h3>
+            <p>1,100+ Properties</p>
+          </div>
+          <img src="images/d_hp_property_type_2.webp" alt="Independent House/ Villa">
+        </div>
+        <div class="carousel-card bg-light-yellow">
+          <div class="card-text ">
+            <h3>Residential Land</h3>
+            <p>470+ Properties</p>
+          </div>
+          <img src="images/d_hp_property_type_3.webp" alt="Residential Land">
+        </div>
+        <div class="carousel-card  bg-light-blue">
+          <div class="card-text">
+            <h3>Commercial Office</h3>
+            <p>800+ Properties</p>
+          </div>
+          <img src="images/d_hp_property_type_4.webp" alt="Commercial Office">
+        </div>
+        <div class="carousel-card bg-light-green">
+          <div class="card-text ">
+            <h3>Farm House</h3>
+            <p>150+ Properties</p>
+          </div>
+          <img src="images/d_hp_property_type_5.webp" alt="Farm House">
+        </div>
+      </div>
+      <button class="nav-button right" id="nextBtn">&#9654;</button>
+    </div>
+  </section>
+
+  <style>
+
+.property-carousel {
+  max-width: 1050px;
+  margin: 50px auto;
+}
+
+.carousel-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.carousel-subheading {
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-wrapper {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+.carousel-card {
+    min-width: 225px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: white;
+    transition: transform 0.3s;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carousel-card:hover {
+  transform: scale(1.02);
+}
+
+.card-text {
+    padding-top: 50px;
+    width: 80%;
+    justify-self: center;
+}
+
+.card-text h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.card-text p {
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Remove background-color from these */
+.bg-light-blue,
+.bg-light-green,
+.bg-light-yellow {
+  /* no changes here */
+}
+
+/* Instead, use them on the card itself */
+.carousel-card.bg-light-blue {
+  background-color: #edf6fd;
+}
+.carousel-card.bg-light-green {
+  background-color: #e9f7ef;
+}
+.carousel-card.bg-light-yellow {
+  background-color: #fff4e1;
+}
+
+
+/* Navigation buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 9999px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nav-button.left {
+  left: -10px;
+}
+
+.nav-button.right {
+  right: -10px;
+}
+
+.nav-button:hover {
+  background-color: #f1f5f9;
+}
+    </style>
+
+    <script>
+const wrapper = document.getElementById("carouselWrapper");
+const next = document.getElementById("nextBtn");
+const prev = document.getElementById("prevBtn");
+
+let currentIndex = 0;
+
+function updateCarousel() {
+  const cardWidth = wrapper.children[0].offsetWidth + 20; // card width + gap
+  wrapper.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+}
+
+next.addEventListener("click", () => {
+  if (currentIndex < wrapper.children.length - 3) {
+    currentIndex++;
+    updateCarousel();
+  }
+});
+
+prev.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateCarousel();
+  }
+});
+
+window.addEventListener("resize", updateCarousel);
+window.addEventListener("load", updateCarousel);
+
+    </script>
+</body>
+</html>

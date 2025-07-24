@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search Bar with Filters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        #search-placeholder {
+            margin-top: -275px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 133px;
+        }
+
+        .main-wrapper {
+            border-radius: 22px;
+            border: 1px solid #ccc;
+            background-color: #ffffffbf;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            border-radius: 12px;
+            padding: 10px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            gap: 15px;
+            border: 1px solid #80808063;
+        }
+
+        .state-select {
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 8px 12px;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="10" viewBox="0 0 24 24" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+            background-size: 10px;
+            padding-right: 24px;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            border-left: 1px solid #ddd;
+            padding-left: 12px;
+            gap: 10px;
+        }
+
+        .search-input-wrapper i {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            font-size: 15px;
+            padding: 10px 0;
+            outline: none;
+            background: transparent;
+        }
+
+        .icon-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-button {
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-button i {
+            color: #6b46c1;
+            font-size: 16px;
+        }
+
+        .icon-button:hover {
+            background: #e9e6ff;
+        }
+
+        .filters {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .filters select {
+            flex: 1;
+            padding: 6px 12px;
+            font-size: 13 px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: white;
+            appearance: none;
+            -webkit-appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="10" viewBox="0 0 24 24" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center;
+            background-size: 10px;
+            padding-right: 26px;
+            cursor: pointer;
+            max-width: 200px;
+            border: 1px solid #80808063;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="search-container">
+            <select class="state-select">
+                <option>Select State</option>
+                <option>Uttar Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Karnataka</option>
+                <option>Delhi</option>
+                <option>Punjab</option>
+            </select>
+
+
+            <div class="search-input-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input" placeholder="Search by Project, Locality, or Builder">
+            </div>
+
+            <div class="icon-buttons">
+                <div class="icon-button" title="Use Location">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+                <div class="icon-button" title="Voice Search">
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters below the search bar -->
+        <div class="filters">
+            <select>
+                <option>Budget</option>
+                <option>Under 20 Lakhs</option>
+                <option>20-50 Lakhs</option>
+                <option>50-80 Lakhs</option>
+                <option>80 Lakhs - 1 Cr</option>
+                <option>1 Cr+</option>
+            </select>
+
+            <select>
+                <option>Property Type</option>
+                <option>Apartment</option>
+                <option>Villa</option>
+                <option>Plot</option>
+                <option>Commercial</option>
+            </select>
+
+            <select>
+                <option>Possession Status</option>
+                <option>Ready to Move</option>
+                <option>Under Construction</option>
+                <option>New Launch</option>
+            </select>
+        </div>
+    </div>
+</body>
+
+</html>

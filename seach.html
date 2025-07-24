@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Search Bar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 50px;
+      background-color: #f5f5f5;
+    }
+
+    .search-container {
+      max-width: 400px;
+      margin: auto;
+      position: relative;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: #aaa;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search here...">
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+
+    searchInput.addEventListener('input', function () {
+      const query = searchInput.value.trim();
+      console.log("User searched:", query);
+      // You can add logic here to filter content, fetch results, etc.
+    });
+  </script>
+
+</body>
+</html>
