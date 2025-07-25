@@ -2,60 +2,225 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bar Chart with Custom Height</title>
+  <title>Property Price Insights in Faridabad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-   
-    .chart-container {
-      width: 240px;
-      height: 150px; /* Set the desired height */
-      background: #fff;
-      padding: 4px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f7f8fa;
+      color: #333;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .subheading {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background-color: rgb(255, 255, 255);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .price-info {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .price-tag {
+      font-weight: bold;
+      color: #4B4BFF;
+    }
+
+    .price-list {
+      font-size: 14px;
+      margin-top: 69px;
+    }
+
+    .price-list div {
+      margin-bottom: 6px;
+    }
+
+    .price-label {
+      display: inline-block;
+      width: 60%;
+    }
+
+    .price-value {
+      font-weight: bold;
+    }
+
+      .price-bar {
+    background-color: #f1f1f1;
+    height: 30px;
+    border-radius: 8px;
+    margin: 8px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-fill {
+    background-color: #afafdc;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+
+    .footer-link {
+      margin-top: 25px;
+      display: inline-block;
+      color: #2b67f6;
+      font-weight: 600;
+      text-decoration: none;
     }
 
     canvas {
-      height: 110% !important; /* Force canvas height */
+      width: 100% !important;
+      height: 236px !important;
     }
   </style>
 </head>
 <body>
-  <div class="chart-container">
-    <canvas id="myChart"></canvas>
+  <div class="container">
+    <h1>Property Price Insights</h1>
+    <div class="subheading">
+      Discover key property price insights, such as market trends, rental benchmarks, and government rates. Enhance your investment decisions with comparisons of leading projects and neighbourhoods.
+    </div>
+
+    <div class="grid">
+
+      <!-- Property Rates Heatmap -->
+      <div class="card">
+        <h3>Property Rates Heatmap<br><span style="font-weight:normal;"></span></h3>
+        <img src="images/map.jpg" alt="Heatmap" style="width:80%; border-radius: 10px;">
+        <div class="price-info">An Interactive Map to help you understand a City’s Real Estate</div>
+      </div>
+
+      <!-- Asking Price with Chart -->
+      <div class="card">
+        <h3>Asking Price<br><span style="font-weight:normal;"></span></h3>
+        <canvas id="barChart"></canvas>
+        <div class="price-info"> <span class="price-tag">₹ 6.3K/Sq.Ft.</span></div>
+      </div>
+
+      <!-- Micromarket Price Comparison -->
+<div class="card">
+  <h3>Micromarket Price Comparison<br><span style="font-weight:normal;"></span></h3>
+  <div class="price-list">
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 100%;">Area 1 – ₹ 7,450</div>
+    </div>
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 93%;">Area 2 – ₹ 6,950</div>
+    </div>
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 91%;">Area 3 – ₹ 6,800</div>
+    </div>
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 85%;">Area 4 – ₹ 6,350</div>
+    </div>
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 74%;">Area 5 – ₹ 5,550</div>
+    </div>
+
   </div>
+</div>
 
-  <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
+      <!-- Rental Supply -->
+<div class="card">
+  <h3>Rental Supply<br><span style="font-weight:normal;"></span></h3>
+  <div class="price-info">Monthly Rent</div>
+  <div class="price-list">
 
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['', '', '', '', ''],
-        datasets: [{
-        
-          data: [45, 72, 55, 38, 60],
-          backgroundColor: [
-            '#4caf50', '#2196f3', '#ffc107', '#ff5722', '#9c27b0'
-          ],
-          borderRadius: 5
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false, 
-           plugins: {
-      legend: {
-        display: false // Hides the label
-      }
-    },// Allows height control
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+    <div class="price-bar">
+      <div class="price-fill" style="width: 20%;">Studio – ₹ 10.7K</div>
+    </div>
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 22%;">1 BHK – ₹ 11.7K</div>
+    </div>
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 37%;">2 BHK – ₹ 19.8K</div>
+    </div>
+
+    <div class="price-bar">
+      <div class="price-fill" style="width: 45%;">3 BHK – ₹ 24.3K</div>
+    </div>
+
+  </div>
+</div>
+
+
+    </div>
+
+    <a href="#" class="footer-link">Property Price Insights</a>
+  </div>
+  <!-- Chart.js script in head -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const ctx = document.getElementById("barChart").getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ['3K–4.5K', '4.5K–5.5K', '5.5K–6.5K', '6.5K–7.5K', '7.5K–9K', '9K–10K'],
+      datasets: [{
+        label: 'No. of Listings',
+        data: [1200, 2600, 3700, 3400, 2400, 900],
+        backgroundColor: '#FFD8B0',
+        borderRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: {
+          beginAtZero: true,
+          
         }
       }
-    });
-  </script>
+    }
+  });
+});
+</script>
 </body>
 </html>
+
