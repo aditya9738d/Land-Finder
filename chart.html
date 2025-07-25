@@ -194,33 +194,6 @@
   </div>
   <!-- Chart.js script in head -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const ctx = document.getElementById("barChart").getContext("2d");
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ['3K–4.5K', '4.5K–5.5K', '5.5K–6.5K', '6.5K–7.5K', '7.5K–9K', '9K–10K'],
-      datasets: [{
-        label: 'No. of Listings',
-        data: [1200, 2600, 3700, 3400, 2400, 900],
-        backgroundColor: '#FFD8B0',
-        borderRadius: 5
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: {
-        y: {
-          beginAtZero: true,
-          
-        }
-      }
-    }
-  });
-});
-</script>
+
 </body>
 </html>
-

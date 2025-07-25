@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
 </head>
 <body>
@@ -43,7 +45,7 @@
         document.getElementById('properies-placeholder').innerHTML = data;
       });
 
-          // Load chart.html
+    // Load chart.html
     fetch('chart.html')
       .then(res => res.text())
       .then(data => {
@@ -52,5 +54,46 @@
 
   </script>
   <script src="script.js"></script>
+
+<!-- Load chart.html and initialize Chart -->
+<script>
+  fetch('chart.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('chart-placeholder').innerHTML = data;
+
+      // Wait a bit for DOM to update (optional but safe)
+      setTimeout(() => {
+        const canvas = document.getElementById("barChart");
+        if (!canvas) {
+          console.error("barChart canvas not found");
+          return;
+        }
+
+        const ctx = canvas.getContext("2d");
+
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ['3K–4.5K', '4.5K–5.5K', '5.5K–6.5K', '6.5K–7.5K', '7.5K–9K', '9K–10K'],
+            datasets: [{
+              label: 'No. of Listings',
+              data: [1200, 2600, 3700, 3400, 2400, 900],
+              backgroundColor: '#FFD8B0',
+              borderRadius: 5
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true }
+            }
+          }
+        });
+      }, 100); // Slight delay to ensure DOM is updated
+    });
+</script>
+
 </body>
 </html>
