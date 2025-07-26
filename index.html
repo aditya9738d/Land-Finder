@@ -14,6 +14,7 @@
   <div id="hero-placeholder"></div>
   <div id="search-placeholder"></div>
   <div id="properies-placeholder"></div>
+  <div id="apartmentsSection-placeholder"></div>
   <div id="chart-placeholder"></div>
 
   <script>
@@ -38,8 +39,15 @@
         document.getElementById('search-placeholder').innerHTML = data;
       });
 
+    // Load apartmentsSection.html
+    fetch('apartmentsSection.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('apartmentsSection-placeholder').innerHTML = data;
+      });
+
     // Load properies.html
-    fetch('properies.html')
+      fetch('properies.html')
       .then(res => res.text())
       .then(data => {
         document.getElementById('properies-placeholder').innerHTML = data;
@@ -75,7 +83,7 @@
         new Chart(ctx, {
           type: "bar",
           data: {
-            labels: ['3K–4.5K', '4.5K–5.5K', '5.5K–6.5K', '6.5K–7.5K', '7.5K–9K', '9K–10K'],
+            labels: ['', '', '', '', '', ''],
             datasets: [{
               label: 'No. of Listings',
               data: [1200, 2600, 3700, 3400, 2400, 900],
@@ -93,6 +101,55 @@
         });
       }, 100); // Slight delay to ensure DOM is updated
     });
+
+    // Load properies.html and initialize carousel script
+fetch('properies.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('properies-placeholder').innerHTML = data;
+
+    // Wait for the DOM to render the inserted HTML, then initialize the carousel
+    setTimeout(() => {
+      const carouselContainer = document.querySelector('#properies-placeholder .top-picks');
+      if (!carouselContainer) return;
+
+      const cards = carouselContainer.querySelectorAll('.propertycard');
+      const thumbnails = carouselContainer.querySelectorAll('.thumbnail');
+      const prevBtn = carouselContainer.querySelector('.prev');
+      const nextBtn = carouselContainer.querySelector('.next');
+
+      if (!cards.length || !thumbnails.length || !prevBtn || !nextBtn) return;
+
+      let current = 0;
+
+      function showCard(index) {
+        cards.forEach((card, i) => {
+          card.classList.toggle('hidden', i !== index);
+        });
+        thumbnails.forEach((thumb, i) => {
+          thumb.classList.toggle('active', i === index);
+        });
+        current = index;
+      }
+
+      nextBtn.addEventListener('click', () => {
+        let next = (current + 1) % cards.length;
+        showCard(next);
+      });
+
+      prevBtn.addEventListener('click', () => {
+        let prev = (current - 1 + cards.length) % cards.length;
+        showCard(prev);
+      });
+
+      thumbnails.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => showCard(index));
+      });
+
+      showCard(0);
+    }, 100); // Delay to ensure DOM is ready
+  });
+
 </script>
 
 </body>
