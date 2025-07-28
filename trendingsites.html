@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    
+
+
+    h1 {
+      font-size: 28px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tabs button {
+      padding: 8px 16px;
+      border: 1px solid #ccc;
+      background-color: white;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .tabs .active {
+      background-color: black;
+      color: white;
+    }
+
+    .scroll-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .card {
+      flex: 0 0 auto;
+      width: 250px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .location {
+      color: gray;
+      font-size: 14px;
+    }
+
+    .price {
+      margin-top: 8px;
+      color: purple;
+      font-weight: bold;
+    }
+
+    /* Optional scrollbar styling */
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    #trendingsites-placeholder{
+      margin: 0 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hot Selling Real Estate Projects </h1>
+  <p> </p>
+  <div class="tabs">
+    <button class="active">Mumbai</button>
+    <button>Area 1</button>
+    <button>Area 2</button>
+    <button>Area 3</button>
+    <button>Area 4</button>
+    <button>Area 5</button>
+    <button>Area 6</button>
+    <button>Area 7</button>
+    <button>Area 8</button>
+  </div>
+
+  <div class="scroll-container">
+    <div class="card">
+      <img src="/images/Exterior 3D Models.jpeg" alt="Property 1">
+      <div class="card-body">
+        <h3>Property 1</h3>
+        <div class="location">Location</div>
+        <div class="price">₹ 4.20 Cr to 9.63 Cr</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="/images/15.jpeg" alt="Property 2">
+      <div class="card-body">
+        <h3>Property 2</h3>
+        <div class="location">Location</div>
+        <div class="price">₹ 3.23 Cr to 3.75 Cr</div>
+      </div>
+    </div>
+      <div class="card">
+      <img src="/images/State Trading Corporation Building (New-Delhi).jpeg" alt="Property 3">
+      <div class="card-body">
+        <h3>Property 3</h3>
+        <div class="location">Location</div>
+        <div class="price">₹ 3.23 Cr to 3.75 Cr</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="/images/download (17).jpeg" alt="Property 4 ">
+      <div class="card-body">
+        <h3>Property 4</h3>
+        <div class="location">Location</div>
+        <div class="price">₹ 2.62 Cr to 5.09 Cr</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="images/download (16).jpeg" alt="Property 5">
+      <div class="card-body">
+        <h3>Property 5 </h3>
+        <div class="location">Location</div>
+        <div class="price">₹ 9.04 Cr to 14.23 Cr</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
