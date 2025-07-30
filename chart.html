@@ -6,6 +6,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f7f8fa;
+      color: #333;
+    }
 
     .container {
       padding: 30px;
@@ -25,7 +31,7 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 10px;
     }
 
     .card {
@@ -34,6 +40,7 @@
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       position: relative;
+      width: auto !important;
     }
 
     .card h3 {
@@ -52,8 +59,8 @@
     }
 
     .price-list {
-    font-size: 14px;
-    align-content: space-around;
+      font-size: 14px;
+      margin-top: 69px;
     }
 
     .price-list div {
@@ -101,7 +108,7 @@
 
     canvas {
       width: 100% !important;
-      height: 236px !important;
+      height: 256px !important;
     }
   </style>
 </head>
@@ -117,7 +124,7 @@
       <!-- Property Rates Heatmap -->
       <div class="card">
         <h3>Property Rates Heatmap<br><span style="font-weight:normal;"></span></h3>
-        <img src="images/map.jpg" alt="Heatmap" style="width:80%; border-radius: 10px;">
+        <img src="images/map.jpg" alt="Heatmap" style="width:85%; border-radius: 10px; height:244px;">
         <div class="price-info">An Interactive Map to help you understand a City’s Real Estate</div>
       </div>
 
@@ -178,8 +185,6 @@
       <div class="price-fill" style="width: 45%;">3 BHK – ₹ 24.3K</div>
     </div>
 
-
-
   </div>
 </div>
 
@@ -190,6 +195,33 @@
   </div>
   <!-- Chart.js script in head -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const ctx = document.getElementById("barChart").getContext("2d");
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ['3K–4.5K', '4.5K–5.5K', '5.5K–6.5K', '6.5K–7.5K', '7.5K–9K', '9K–10K'],
+      datasets: [{
+        label: 'No. of Listings',
+        data: [1200, 2600, 3700, 3400, 2400, 900],
+        backgroundColor: '#FFD8B0',
+        borderRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: {
+          beginAtZero: true,
+          
+        }
+      }
+    }
+  });
+});
+</script>
 </body>
 </html>
+

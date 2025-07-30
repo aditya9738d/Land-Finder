@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sell/Rent Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-box {
+      background: white;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .toggle-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .toggle-button {
+      flex: 1;
+      margin: 5px;
+      padding: 10px;
+      background-color: #eee;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .toggle-button.active {
+      background-color: #ff8c42;
+      color: white;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #ccc;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: not-allowed;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn.enabled {
+      background-color: #ff8c42;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth-compat.js"></script>
+</head>
+<body>
+
+  <div class="form-box">
+    <h2>Let’s get you started</h2>
+
+    <label>You are:</label>
+    <div class="toggle-group">
+      <button class="toggle-button" onclick="selectRole(this, 'owner')">Owner</button>
+      <button class="toggle-button" onclick="selectRole(this, 'agent')">Agent</button>
+    </div>
+
+    <label>You are here to:</label>
+    <div class="toggle-group">
+      <button class="toggle-button" onclick="selectPurpose(this, 'sell')">Sell</button>
+      <button class="toggle-button" onclick="selectPurpose(this, 'rent')">Rent/Lease</button>
+    </div>
+
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="Enter your email" class="input-group input" />
+
+    <label>Password:</label>
+    <input type="password" id="password" placeholder="Enter your password" class="input-group input" />
+
+    <label>Property city:</label>
+    <input type="text" id="city" placeholder="Enter city" class="input-group input" />
+
+    <button class="submit-btn" id="continueBtn" onclick="login()" disabled>Login & Continue</button>
+  </div>
+
+  <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCKnvrbCOYKm7-Crg6yd9-8FSQc7iARr9E",
+      authDomain: "sabsoftzone-5f099.firebaseapp.com",
+      projectId: "sabsoftzone-5f099",
+      storageBucket: "sabsoftzone-5f099.appspot.com",
+      messagingSenderId: "1046081705762",
+      appId: "1:1046081705762:web:4d7b24741c99b971d0f77b"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    let selectedRole = null;
+    let selectedPurpose = null;
+
+    function selectRole(button, role) {
+      selectedRole = role;
+      document.querySelectorAll('.toggle-group:first-of-type .toggle-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      checkFormValidity();
+    }
+
+    function selectPurpose(button, purpose) {
+      selectedPurpose = purpose;
+      document.querySelectorAll('.toggle-group:last-of-type .toggle-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      checkFormValidity();
+    }
+
+    function checkFormValidity() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const city = document.getElementById("city").value.trim();
+      const continueBtn = document.getElementById("continueBtn");
+
+      const validEmail = email.includes("@") && email.includes(".");
+      const validPassword = password.length >= 6;
+
+      if (selectedRole && selectedPurpose && validEmail && validPassword && city) {
+        continueBtn.disabled = false;
+        continueBtn.classList.add("enabled");
+      } else {
+        continueBtn.disabled = true;
+        continueBtn.classList.remove("enabled");
+      }
+    }
+
+    async function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const city = document.getElementById("city").value.trim();
+
+      try {
+        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+        alert("✅ Login successful!\n\n" +
+              `Role: ${selectedRole}\n` +
+              `Purpose: ${selectedPurpose}\n` +
+              `Email: ${email}\n` +
+              `City: ${city}`);
+        // You can redirect the user or submit data here
+      } catch (error) {
+        if (error.code === 'auth/user-not-found') {
+          // Auto-register if user not found
+          try {
+            await firebase.auth().createUserWithEmailAndPassword(email, password);
+            alert("✅ Account created and logged in!\n\n" +
+                  `Role: ${selectedRole}\n` +
+                  `Purpose: ${selectedPurpose}\n` +
+                  `Email: ${email}\n` +
+                  `City: ${city}`);
+          } catch (e) {
+            alert("❌ Sign up failed: " + e.message);
+          }
+        } else {
+          alert("❌ Login failed: " + error.message);
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      ["email", "password", "city"].forEach(id => {
+        document.getElementById(id).addEventListener("input", checkFormValidity);
+      });
+    });
+  </script>
+</body>
+</html>
